@@ -1,53 +1,42 @@
 // Array of strings
-var arr = ['rock', 'paper', 'scissors'];
+const arr = ['rock', 'paper', 'scissors'];
+let playerScore = 0;
+let computerScore = 0;
 
-// Function to generate a random string from the array
-function getRandomString() {
-  var randomIndex = Math.floor(Math.random() * arr.length);
-  return arr[randomIndex];
+//for loop to play the game five times and alert the winner
+for (let i = 0; i < 5; i++) {
+// all the conditions and results embedded in the for loop
+  const playerSelection = prompt(`Round ${i + 1}: Do you choose rock, paper or scissors?`);
+
+  const computerChoice = arr[Math.floor(Math.random() * arr.length)];
+
+  //console.log("Computer choice: ", computerChoice);
+
+  if (playerSelection.toLowerCase() === computerChoice.toLowerCase()) {
+    alert("It's a tie!");
+  } else if (
+    (playerSelection.toLowerCase() === 'rock' && computerChoice.toLowerCase() === 'scissors') ||
+    (playerSelection.toLowerCase() === 'paper' && computerChoice.toLowerCase() === 'rock') ||
+    (playerSelection.toLowerCase() === 'scissors' && computerChoice.toLowerCase() === 'paper')
+  ) {
+    alert("You win this round!");
+    playerScore++;
+  } else if (
+    (computerChoice.toLowerCase() === 'rock' && playerSelection.toLowerCase() === 'scissors') ||
+    (computerChoice.toLowerCase() === 'paper' && playerSelection.toLowerCase() === 'rock') ||
+    (computerChoice.toLowerCase() === 'scissors' && playerSelection.toLowerCase() === 'paper')
+  ) {
+    alert("Computer wins this round!");
+    computerScore++;
+  } else {
+    alert("invalid input")
+  }
 }
 
-
-// Function to compare the random string to another string (case insensitive)
-function playRound(computerChoice, playerSelection) {
-  if (computerChoice.toLowerCase() === playerSelection.toLowerCase()) {
-    alert("It's a tie.");
-  } if (computerChoice.toLowerCase() === 'rock'&& playerSelection.toLowerCase() === 'scissor') {
-    alert("computer beat you with Rock against Scissor");
-  } else if (computerChoice.toLowerCase() === 'paper'&& playerSelection.toLowerCase() === 'rock') {
-    alert('computer beat you with Paper against Rock');
-  } else if (computerChoice.toLowerCase() === 'paper'&& playerSelection.toLowerCase() === 'scissor') {
-    alert('you beat Computer with Scissor against Paper');
-  } else if (computerChoice.toLowerCase() === 'scissor'&& playerSelection.toLowerCase() === 'rock') {
-    alert('You beat Computer with Rock against Scissor');
-  } else if (computerChoice.toLowerCase() === 'scissor'&& playerSelection.toLowerCase() === 'paper') {
-    alert('Computer beat you with Scissor against Paper');
-  } else if (computerChoice.toLowerCase() === 'rock'&& playerSelection.toLowerCase() === 'paper') {
-    alert('You beat Computer with Paper against rock');
-  } 
-}
-//let playerSelection = prompt('input your choice', '')
-// Generate the random string and store it in a variable
-//var randomString = getRandomString();
-
-// Compare the random string to another string
-//var result = playRound(randomString, playerSelection);
-
-// Log the result to the console
-// console.log(result);
-//alert(result)
-
-// Loop for five iterations
-for (var i = 0; i < 5; i++) {
-  // Generate the random string and store it in a variable
-  var randomString = getRandomString();
-
-  // Get the user input
-  var playerSelection = prompt('Enter your choice (Rock, Paper, Scissors):');
-
-  // Compare the random string to the user input
-  var result = playRound(randomString, playerSelection);
-
-  // Alert the result
-  alert(result);
+if (playerScore > computerScore) {
+  alert(`You won the game!\nYour score: ${playerScore}\nComputer score: ${computerScore}`);
+} else if (playerScore < computerScore) {
+  alert(`Computer won the game!\nYour score: ${playerScore}\nComputer score: ${computerScore}`);
+} else {
+  alert(`It's a tie!\nYour score: ${playerScore}\nComputer score: ${computerScore}`);
 }
