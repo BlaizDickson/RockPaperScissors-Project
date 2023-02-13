@@ -18,7 +18,7 @@ for (let i = 0; i < 5; i++) {
     (playerSelection.toLowerCase() === 'rock' && computerChoice.toLowerCase() === 'scissors') ||
     (playerSelection.toLowerCase() === 'paper' && computerChoice.toLowerCase() === 'rock') ||
     (playerSelection.toLowerCase() === 'scissors' && computerChoice.toLowerCase() === 'paper')
-  ) {
+  ) { 
     alert("You win this round!");
     playerScore++;
   } else if (
