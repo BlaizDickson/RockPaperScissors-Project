@@ -10,7 +10,6 @@ for (let i = 0; i < 5; i++) {
 
   const computerChoice = arr[Math.floor(Math.random() * arr.length)];
 
-  //console.log("Computer choice: ", computerChoice);
 
   if (playerSelection.toLowerCase() === computerChoice.toLowerCase()) {
     alert("It's a tie!");
