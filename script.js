@@ -1,10 +1,13 @@
+const rockBtn = document.querySelector("#rock");
+const paperBtn = document.querySelector("#paper");
+const scissorsBtn = document.querySelector("#scissors");
 // Array of strings
 const arr = ['rock', 'paper', 'scissors'];
 let playerScore = 0;
-let computerScore = 0;
+let computerScore = 0;s
 
 //for loop to play the game five times and alert the winner
-for (let i = 0; i < 5; i++) {
+//for (let i = 0; i < 5; i++) {
 // all the conditions and results embedded in the for loop
   const playerSelection = prompt(`Round ${i + 1}: Do you choose rock, paper or scissors?`);
 
@@ -30,7 +33,7 @@ for (let i = 0; i < 5; i++) {
   } else {
     alert("invalid input")
   }
-}
+//}
 
 if (playerScore > computerScore) {
   alert(`You won the game!\nYour score: ${playerScore}\nComputer score: ${computerScore}`);
@@ -39,3 +42,7 @@ if (playerScore > computerScore) {
 } else {
   alert(`It's a tie!\nYour score: ${playerScore}\nComputer score: ${computerScore}`);
 }
+
+rockBtn.addEventListener("click", () => game("rock"));
+paperBtn.addEventListener("click", () => game("paper"));
+scissorsBtn.addEventListener("click", () => game("scissors"));
