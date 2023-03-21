@@ -1,0 +1,32 @@
+body {
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+  font-family: Roboto, sans-serif;
+  display: flex;
+  flex-direction: column;
+  }
+  #content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+button {
+    font-size: 16px;
+    padding: 10px 20px;
+    margin-right: 10px;
+  }
+
+  #result {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+
+  #score {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 20px;
+  }

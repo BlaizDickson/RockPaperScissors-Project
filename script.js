@@ -3,6 +3,9 @@ const rockBtn = document.querySelector("#rock-btn");
 const paperBtn = document.querySelector("#paper-btn");
 const scissorsBtn = document.querySelector("#scissors-btn");
 const resultDiv = document.querySelector("#result");
+const scoreDiv = document.querySelector("#score");
+      let playerScore = 0;
+      let computerScore = 0;
 
 function computerPlay() {
   // Generate a random number between 0 and 2
@@ -25,8 +28,10 @@ function playRound(playerSelection, computerSelection) {
     (playerSelection === "paper" && computerSelection === "rock") ||
     (playerSelection === "scissors" && computerSelection === "paper")
   ) {
+    playerScore++;
     return `You win! ${playerSelection} beats ${computerSelection}.`;
   } else {
+    computerScore++;
     return `You lose! ${computerSelection} beats ${playerSelection}.`;
   }
 }
@@ -36,6 +41,15 @@ function handleClick(event) {
   let computerSelection = computerPlay();
   let result = playRound(playerSelection, computerSelection);
   resultDiv.textContent = result;
+  scoreDiv.textContent = `Score: Player ${playerScore} - ${computerScore} Computer`;
+
+  if (playerScore === 5 || computerScore === 5) {
+    let winner = playerScore === 5 ? "Player" : "Computer";
+    resultDiv.textContent = `${winner} wins the game! Final score: Player ${playerScore} - ${computerScore} Computer`;
+    rockBtn.disabled = true;
+    paperBtn.disabled = true;
+    scissorsBtn.disabled = true;
+  }
 }
 
 rockBtn.addEventListener("click", handleClick);
