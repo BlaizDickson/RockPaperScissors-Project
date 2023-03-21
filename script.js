@@ -1,48 +1,43 @@
-const rockBtn = document.querySelector("#rock");
-const paperBtn = document.querySelector("#paper");
-const scissorsBtn = document.querySelector("#scissors");
-// Array of strings
-const arr = ['rock', 'paper', 'scissors'];
-let playerScore = 0;
-let computerScore = 0;s
+const choices = ["rock", "paper", "scissors"];
+const rockBtn = document.querySelector("#rock-btn");
+const paperBtn = document.querySelector("#paper-btn");
+const scissorsBtn = document.querySelector("#scissors-btn");
+const resultDiv = document.querySelector("#result");
 
-//for loop to play the game five times and alert the winner
-//for (let i = 0; i < 5; i++) {
-// all the conditions and results embedded in the for loop
-  const playerSelection = prompt(`Round ${i + 1}: Do you choose rock, paper or scissors?`);
+function computerPlay() {
+  // Generate a random number between 0 and 2
+  let randomNumber = Math.floor(Math.random() * 3);
 
-  const computerChoice = arr[Math.floor(Math.random() * arr.length)];
-
-
-  if (playerSelection.toLowerCase() === computerChoice.toLowerCase()) {
-    alert("It's a tie!");
-  } else if (
-    (playerSelection.toLowerCase() === 'rock' && computerChoice.toLowerCase() === 'scissors') ||
-    (playerSelection.toLowerCase() === 'paper' && computerChoice.toLowerCase() === 'rock') ||
-    (playerSelection.toLowerCase() === 'scissors' && computerChoice.toLowerCase() === 'paper')
-  ) { 
-    alert("You win this round!");
-    playerScore++;
-  } else if (
-    (computerChoice.toLowerCase() === 'rock' && playerSelection.toLowerCase() === 'scissors') ||
-    (computerChoice.toLowerCase() === 'paper' && playerSelection.toLowerCase() === 'rock') ||
-    (computerChoice.toLowerCase() === 'scissors' && playerSelection.toLowerCase() === 'paper')
-  ) {
-    alert("Computer wins this round!");
-    computerScore++;
-  } else {
-    alert("invalid input")
-  }
-//}
-
-if (playerScore > computerScore) {
-  alert(`You won the game!\nYour score: ${playerScore}\nComputer score: ${computerScore}`);
-} else if (playerScore < computerScore) {
-  alert(`Computer won the game!\nYour score: ${playerScore}\nComputer score: ${computerScore}`);
-} else {
-  alert(`It's a tie!\nYour score: ${playerScore}\nComputer score: ${computerScore}`);
+  // Return the corresponding choice
+  return choices[randomNumber];
 }
 
-rockBtn.addEventListener("click", () => game("rock"));
-paperBtn.addEventListener("click", () => game("paper"));
-scissorsBtn.addEventListener("click", () => game("scissors"));
+function playRound(playerSelection, computerSelection) {
+  // Convert both selections to lowercase for case-insensitive comparison
+  playerSelection = playerSelection.toLowerCase();
+  computerSelection = computerSelection.toLowerCase();
+
+  // Determine the winner
+  if (playerSelection === computerSelection) {
+    return "It's a tie!";
+  } else if (
+    (playerSelection === "rock" && computerSelection === "scissors") ||
+    (playerSelection === "paper" && computerSelection === "rock") ||
+    (playerSelection === "scissors" && computerSelection === "paper")
+  ) {
+    return `You win! ${playerSelection} beats ${computerSelection}.`;
+  } else {
+    return `You lose! ${computerSelection} beats ${playerSelection}.`;
+  }
+}
+
+function handleClick(event) {
+  let playerSelection = event.target.id.split("-")[0];
+  let computerSelection = computerPlay();
+  let result = playRound(playerSelection, computerSelection);
+  resultDiv.textContent = result;
+}
+
+rockBtn.addEventListener("click", handleClick);
+paperBtn.addEventListener("click", handleClick);
+scissorsBtn.addEventListener("click", handleClick);
